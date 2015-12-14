@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Nina": {
+      "applicationId": "yNxZHA2tRlRYdH7yKqh7dYdayslV0OCa8BJMdIY2"
+    },
+    "_default": {
+      "link": "Nina"
+    }
+  }
+}
