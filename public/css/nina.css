@@ -1,14 +1,14 @@
 body {
   position: absolute;
   
-  background-color: #eee;
+  background-color: rgba(0,0,0,0);
   width: 100%;
   height: 100%;
 }
 
 
 #mapa{
-
+ 
  width: 100%;
  height: 100%;
 
@@ -21,4 +21,11 @@ body {
   background-image: none;
   
 
+}
+.nina-container{
+	width: 100%;
+}
+
+.nina-navbar-right{
+	padding-right: 35px;
 }
