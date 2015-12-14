@@ -72,7 +72,7 @@ ul, ol{
 }
 /* Navigation */
 #tf-menu {
-	padding: 20px;
+	padding: 0px;
 	transition: all 0.8s;
 }
 #tf-menu.navbar-default {
