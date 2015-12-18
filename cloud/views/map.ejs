@@ -1,3 +1,4 @@
+
 <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top nina-navbar">
       <div class="nina-container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,12 +46,22 @@
           
           
          
-        
+   <div class="ui-layout-center" >
+      <div id="mapa" >
+  
+      </div> 
+  </div>
+  
+  <div class="ui-layout-east">
+   
+  </div>     
         
  
-  <div id="mapa" >
-  </div>
+  
 
 	<script type="text/javascript">
-	        new App.Views.MapView({});
+   $("body").layout({ applyDemoStyles: true });
+   $(".ui-layout-center").addClass("nina-layout-center");
+	 new App.Views.MapView({});
+         
 	</script>
