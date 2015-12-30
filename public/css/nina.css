@@ -8,6 +8,7 @@ body {
 
 
 #mapa{
+	position: absotlute;
  
  width: 100%;
  height: 100%;

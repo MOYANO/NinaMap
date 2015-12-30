@@ -1,7 +1,7 @@
 
 <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top nina-navbar">
       <div class="nina-container">
-        <!-- Brand and toggle get grouped for better mobile display -->
+       
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
@@ -12,7 +12,7 @@
           <a class="navbar-brand" href="#">NinaMap</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+        
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
          
             
@@ -38,36 +38,47 @@
             
           </ul>
           
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        </div>
+      </div>
+</nav>
+   <div id="mapa"> 
+    </div>
+    <!--  <div class="ui-layout-center">
+     
+     </div>
 
-    </nav>
-
-          
+    
+    <div class="ui-layout-east">East</div>
+    <div class="ui-layout-west">West</div>   -->   
           
          
-   <div  class="ui-layout-center" >
-    <div id="mapa"> 
-    </div>
-  </div>
-  
-  <div class="ui-layout-east ui-layout-pane ui-layout-pane-east ui-layout-pane-hover ui-layout-pane-east-hover ui-layout-pane-open-hover ui-layout-pane-east-open-hover">
-  This is the east pane, closable, slidable and resizable
-
  
-  </div>    
         
  
   
 
 	<script type="text/javascript">
-   $("body").layout({ applyDemoStyles: true });
+  $(document).ready( function() {
+
+    // $("body").layout({ applyDemoStyles: true });
+
+  
+   
+   // $('body').layout({
+   //  applyDemoStyles: true ,
+   //     west__size:      300,
+   //   east__size:      300,
+   //   east__onresize:  $.layout.callbacks.resizePaneAccordions,
+   //    west__onresize:  $.layout.callbacks.resizePaneAccordions
+   // });
 
 // read layout 'options'
  //myLayout.options.east.resizable=true;
  
-  $(".ui-layout-center").addClass("nina-layout-center");
-	 new App.Views.MapView({});
+  //$(".ui-layout-center").addClass("nina-layout-center");
+   new App.Views.MapView({});
+  });
+  
    // var myLayout;
 
  

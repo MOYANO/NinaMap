@@ -6,10 +6,11 @@
 		Collections:{},
 		Views: {},
 		Router:{},
-    Functions:{}
+    Functions:{},
+    map:{}
 
 	};
-  
+  var map;
  
 
 	 Parse.initialize("yNxZHA2tRlRYdH7yKqh7dYdayslV0OCa8BJMdIY2",
@@ -113,20 +114,21 @@
       
     },
     main:function(){
-
-      var map = L.map('mapa', { 
+       var map = L.map('mapa', { 
           zoomControl: false,
           center: [40.432703, -3.700872],
           zoom: 15
         });
+
+      App.map = map;
       var gj =  new L.GeoJSON();
       //create empty geojson object and add it to the map
-      map.addLayer(gj);
+      App.map.addLayer(gj);
       L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
           attribution: 'Stamen'
       }).addTo(map);
 
-      map.on('click', function(e) {        
+      App.map.on('click', function(e) {        
           
           Parse.Cloud.run('isocrona', {x:e.latlng.lat,y:e.latlng.lng}, {
             success: function(result,context) {
@@ -152,7 +154,7 @@
                                     //this.App.Functions.select(sql_defi);
                                     gj.addData(d);
 
-                                     cartodb.createLayer(map, {
+                                     cartodb.createLayer(App.map, {
                                         user_name: 'ninayom',
                                         type: 'cartodb',
                                         sublayers: [{
@@ -164,12 +166,12 @@
                                       }, {
                                           https: true
                                         })
-                                      .addTo(map) // add the layer to our map which already contains 1 sublayer
+                                      .addTo(App.map) // add the layer to our map which already contains 1 sublayer
                                       .done(function(layer) {
 
                                             var sql = new cartodb.SQL({ user: 'ninayom' });
                                               sql.getBounds(sql_defi).done(function(bounds) {
-                                                map.fitBounds(bounds)
+                                                App.map.fitBounds(bounds)
                                               });
                                             
                                       });
