@@ -86,11 +86,12 @@
 
   App.Views.MapView= Backbone.View.extend({
 
-   el: $("#map"),
+   el: $("body"),
 
     events: {
 
-       "click #a_salir": "salir"
+       "click #a_salir": "salir",
+       "click #btn_graficos": "mostrar_panel"
       
     },
     
@@ -102,7 +103,16 @@
 
     salir: function(){
 
-     
+     alert("ssdss")
+
+    },
+    mostrar_panel: function(){
+
+        
+        
+         
+      
+
 
     },
 
