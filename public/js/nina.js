@@ -108,9 +108,10 @@
     },
     mostrar_panel: function(){
 
+         $('#panel_graficos').animate({width: 'toggle'});
         
-        
-         
+         $('#mapa').width('100%');
+         App.map.invalidateSize();
       
 
 

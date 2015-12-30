@@ -9,16 +9,24 @@ body {
 
 #mapa{
 	
-
- width: 100%;
+float:left;
+    display:inline-block;
+ width: 50%;
  height:100%;
 
 }
+#panel_graficos{
+	float:left;
+    display:inline-block;
+	width: 50%;
+ height:100%;
+ background-color: red
+}
 #container{
-	
+
  width: 100%;
  height:100%;
-	display:block;
+
 }
 .nina-navbar{
   
