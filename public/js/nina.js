@@ -108,9 +108,10 @@
     },
     mostrar_panel: function(){
 
-         $('#panel_graficos').animate({width: 'toggle'});
-        
-         $('#mapa').width('100%');
+         //$('#panel_graficos').animate({width: 'toggle'});
+         
+          //$('#mapa').width($('#mapa').width()/2+"%");
+         // $('#panel_graficos').width(100-$('#mapa').width()+"%");
          App.map.invalidateSize();
       
 
