@@ -60,7 +60,7 @@ body {
     padding-left: 5px;
 }
 .nina-panel{
-  font-size: 13px;
+  font-size: 14px;
     font-weight: 700;
   position: absolute;
   z-index: 1;
@@ -99,7 +99,7 @@ float:left;
 }
 #container{
 
- width: 100%;
+ width: 50%;
  height:100%;
  
 
