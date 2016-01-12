@@ -1,5 +1,5 @@
 
-<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top nina-navbar">
+<nav id="tf-menu" class="navbar navbar-default navbar-fixed-top nina-navbar" id="nav_bar">
       <div class="nina-container">
        
         <div class="navbar-header">
@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">NinaMap</a>
+          <a class="navbar-brand" href="">NinaMap</a>
         </div>
 
         
@@ -60,26 +60,26 @@
 </nav>
 
 
-<div id="container">
+
      
   
  
 
-    <div class="panel panel-default nina-panel">
-    <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove"></i></button>
-      <div class="panel-heading">
-        <h8 class="panel-title">Panel title</h8>
+    <div class="panel panel-default nina-panel nina-visible" id="panel_pv">
+    <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove icon-white"></i></button>
+      <div class="panel-heading nina-panel-heading">
+        <h8 class="panel-title">Puntos de Venta</h8>
         
       </div>
       <div class="panel-body">
         Panel content
       </div>
     </div>
-    <div id="mapa"> 
-         <div class="overlay-super map-buttons darkglass" style="opacity: 1; display: block; height: 105px;">
+
+    <div class="overlay-super map-buttons darkglass" id="MapTool" style="opacity: 1; display: block; height: 105px;">
             <div class="cpanel3" >
-                <div title="Puntos de Venta" id="quickview-btn-bg" class="btn-bg">
-                    <button class="btn btn-mini btn-kilo btn-xs" id="toggleQuickview"><i id="toggleQuickviewIcon" class="glyphicon glyphicon-shopping-cart"></i></button>
+                <div title="Puntos de Venta" class="btn-bg" id="btn_pv" >
+                    <button class="btn btn-mini btn-kilo btn-xs" ><i id="toggleQuickviewIcon" class="glyphicon glyphicon-shopping-cart "></i></button>
                 </div>
                 <div title="Advanced map search" id="filters-btn-bg" class="btn-bg">
                     <button class="btn btn-mini btn-kilo" id="toggleFilters"><i id="toggleFiltersIcon" class="icon-zoom-in icon-white"></i></button>
@@ -94,8 +94,10 @@
                 </div>
             </div>
           </div>
+    <div id="mapa"> 
+         
     </div>
-  </div>
+
     <!-- botones -->
 
 
@@ -128,13 +130,29 @@
          
  
         
- 
+ <script src="js/nina.js"></script>
   
 
 	<script type="text/javascript">
  
    
    new App.Views.MapView({});
+   new App.Views.PanelPvView({});
+   new App.Views.MapTool({});
+   new App.Views.NavBarView({});
+ $( document ).ready(function() {
+  // Handler for .ready() called.
+  
+    if (Parse.User.current()) {
+       //the page loads
+       alert("user")
+    } else {
+       //redirect user to the login page
+      // window.location = '/map';
+     
+    }
+  });
+  
       // $('#panel_graficos').slideReveal({trigger: $("#btn_graficos"),position:"right", width:"500"})
 
         

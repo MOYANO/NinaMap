@@ -51,6 +51,127 @@
 	    }
 	});
 
+     App.Views.NavBarView = Backbone.View.extend({
+      // Instead of generating a new element, bind to the existing skeleton of
+      // the App already present in the HTML.
+       el: $("#nav_bar"),
+       events: {
+
+        
+        "click #btn_salir":"cerrar"
+        
+      
+      },
+      cerrar: function(e) {
+      
+      Parse.User.logOut();
+
+       // dialog.dialog( "open" );
+
+     },
+     logOut: function(e) {
+      
+        
+        
+       
+        
+      
+
+     },
+      initialize: function() {
+        this.render();
+      },
+
+      render: function() {
+         
+      }
+  });
+
+App.Views.PanelPvView = Backbone.View.extend({
+      // Instead of generating a new element, bind to the existing skeleton of
+      // the App already present in the HTML.
+       el: $("#panel_pv"),
+       events: {
+
+        
+        "click #closeLeft":"cerrar"
+        
+      
+      },
+      cerrar: function(e) {
+      
+       $("#panel_pv").toggleClass("nina_visible")
+
+       // dialog.dialog( "open" );
+
+     },
+     logOut: function(e) {
+      
+        
+        
+       
+        
+      
+
+     },
+      initialize: function() {
+        this.render();
+      },
+
+      render: function() {
+         
+      }
+  });
+
+   App.Views.MapTool = Backbone.View.extend({
+      // Instead of generating a new element, bind to the existing skeleton of
+      // the App already present in the HTML.
+       el: $("#MapTool"),
+       events: {
+
+        
+        "click #btn_pv":"muestra_pv"
+        
+      
+      },
+      muestra_pv: function(e) {
+      
+        $("#panel_pv").toggleClass("nina-visible",1000)
+       // dialog.dialog( "open" );
+
+      
+      // if ( Parse.User.current() ) {
+      //       Parse.User.logOut();
+
+      //       // check if really logged out
+      //       if (Parse.User.current())
+      //           console.log("Failed to log out!");
+      //   }
+
+      //   // do redirect
+      //   //window.location.replace("Sign_In.html");
+      //   // or
+      //   window.location.href = "/";
+
+     },
+     logOut: function(e) {
+      
+        
+        
+       
+        
+      
+
+     },
+      initialize: function() {
+        this.render();
+      },
+
+      render: function() {
+         
+      }
+  });
+
 	App.Router = Backbone.Router.extend({
 
 		routes: {
@@ -86,12 +207,14 @@
 
   App.Views.MapView= Backbone.View.extend({
 
-   el: $("body"),
+   el: $('#mapa'),
 
     events: {
 
        "click #a_salir": "salir",
-       "click #btn_graficos": "mostrar_panel"
+       "click #btn_graficos": "mostrar_panel",
+       "click #btn_pv": "mostrar_panel",
+       "click #map": "click_map"
       
     },
     
@@ -106,15 +229,15 @@
      alert("ssdss")
 
     },
-    mostrar_panel: function(){
+    mostrar_panel: function(event){
 
          //$('#panel_graficos').animate({width: 'toggle'});
          
           //$('#mapa').width($('#mapa').width()/2+"%");
          // $('#panel_graficos').width(100-$('#mapa').width()+"%");
-         App.map.invalidateSize();
-      
+         //App.map.invalidateSize();
 
+          $("#panel_pv").toggleClass("nina-visible")
 
     },
 
@@ -124,6 +247,9 @@
       
 
       
+    },
+    click_map(){
+        
     },
     main:function(){
        var map = L.map('mapa', { 
@@ -138,7 +264,7 @@
       App.map.addLayer(gj);
       L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
           attribution: 'Stamen'
-      }).addTo(map);
+      }).addTo(App.map);
 
       App.map.on('click', function(e) {        
           
@@ -218,6 +344,7 @@
 
   new App.Router;
   new App.Views.AppView;
+ 
   Backbone.history.start();
 
 })();

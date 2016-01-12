@@ -41,7 +41,12 @@ app.get('/', function(req, res) {
 });
 
 app.get('/map', function(req, res) {
-   res.render('map');
+   if (Parse.User.current()) {
+    res.render('map');
+   }
+   else{
+     res.redirect('');
+  }
   });
 
 app.get('/Precios', function(req, res) {
@@ -56,7 +61,7 @@ app.get('/logOut', function(req, res) {
  app.post('/logIn', function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
      
-     res.redirect('/');
+      res.render('map');
     }, function(error) {
       // Show the error message and let the user try again
        res.render('login.ejs',{error:error.message});
