@@ -11,7 +11,10 @@
 
 	};
   var map;
- 
+ window.template = function (id) {
+
+    return _.template( $('#' + id).html());
+  };
 
 	 Parse.initialize("yNxZHA2tRlRYdH7yKqh7dYdayslV0OCa8BJMdIY2",
                    "aIu5Xf9dmVWNN3cjNH0WvSry8TErHbTFSUA3o2L9");
@@ -100,18 +103,14 @@ App.Views.PanelPvView = Backbone.View.extend({
       },
       cerrar: function(e) {
       
-       $("#panel_pv").toggleClass("nina_visible")
+      if(this.el.style.display == 'block'){
+          this.el.style.display = 'none';
+       }else{
+          this.el.style.display = 'block';
+       }
+      
 
        // dialog.dialog( "open" );
-
-     },
-     logOut: function(e) {
-      
-        
-        
-       
-        
-      
 
      },
       initialize: function() {
@@ -119,7 +118,7 @@ App.Views.PanelPvView = Backbone.View.extend({
       },
 
       render: function() {
-         
+         //this.$el.html(_.template($("#panel_pv_template").html()));
       }
   });
 
@@ -135,8 +134,12 @@ App.Views.PanelPvView = Backbone.View.extend({
       
       },
       muestra_pv: function(e) {
-      
-        $("#panel_pv").toggleClass("nina-visible",1000)
+        var a = $("#panel_pv")
+        if($("#panel_pv").css("display") == 'block'){
+          $("#panel_pv").css("display","none");
+       }else{
+         $("#panel_pv").css("display", 'block');
+       }
        // dialog.dialog( "open" );
 
       

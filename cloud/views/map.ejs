@@ -62,10 +62,9 @@
 
 
      
-  
+  <!-- <div id="panel_pv" class="nina-panel"></div> -->
  
-
-    <div class="panel panel-default nina-panel nina-visible" id="panel_pv">
+  <div class="panel panel-default nina-panel  nina-visible" id="panel_pv">
     <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove icon-white"></i></button>
       <div class="panel-heading nina-panel-heading">
         <h8 class="panel-title">Puntos de Venta</h8>
@@ -75,6 +74,7 @@
         Panel content
       </div>
     </div>
+    
 
     <div class="overlay-super map-buttons darkglass" id="MapTool" style="opacity: 1; display: block; height: 105px;">
             <div class="cpanel3" >
@@ -85,14 +85,7 @@
                     <button class="btn btn-mini btn-kilo" id="toggleFilters"><i id="toggleFiltersIcon" class="icon-zoom-in icon-white"></i></button>
                 </div>
             </div>
-            <div class="cpanel6" style="display: block;">
-                <div title="Street View" id="sview-btn-bg" class="btn-bg">
-                    <button class="btn btn-mini btn-kilo" id="toggleStreetview"><i id="toggleStreetviewIcon" class="icon-camera icon-white"></i></button>
-                </div>
-                <div title="Estimate travel" id="travel-btn-bg" class="btn-bg">
-                    <button class="btn btn-mini btn-kilo" id="toggleDirections"><i id="toggleDirectionsIcon" class="icon-time icon-white"></i></button>
-                </div>
-            </div>
+           
           </div>
     <div id="mapa"> 
          
@@ -131,6 +124,8 @@
  
         
  <script src="js/nina.js"></script>
+
+
   
 
 	<script type="text/javascript">
@@ -140,18 +135,18 @@
    new App.Views.PanelPvView({});
    new App.Views.MapTool({});
    new App.Views.NavBarView({});
- $( document ).ready(function() {
-  // Handler for .ready() called.
+ // $( document ).ready(function() {
+ //  // Handler for .ready() called.
   
-    if (Parse.User.current()) {
-       //the page loads
-       alert("user")
-    } else {
-       //redirect user to the login page
-      // window.location = '/map';
+ //    if (Parse.User.current()) {
+ //       //the page loads
+ //       alert("user")
+ //    } else {
+ //       //redirect user to the login page
+ //      // window.location = '/map';
      
-    }
-  });
+ //    }
+ //  });
   
       // $('#panel_graficos').slideReveal({trigger: $("#btn_graficos"),position:"right", width:"500"})
 
