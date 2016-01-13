@@ -68,7 +68,7 @@ body {
   position: absolute;
   z-index: 1;
   top:66px ;
-  right: 45px;
+  right: 40px;
   width:300px;
   height: 400px;
   
@@ -85,7 +85,15 @@ body {
   color:white !important;
   border-bottom: none !important;
 }
-
+.nina-transparent-bg{
+      box-shadow: none;
+    background-color:rgba(0, 0, 0, 0.0)!important;
+    border: 1px solid rgba(0, 0, 0, 0.0)!important;
+    background: none;
+}
+.nina-smokescreen {
+    background: rgba(28, 32, 38, 0.93);
+}
 .cpanel3 .btn, .cpanel6 .btn {
     height: 48px;
     opacity: 1;

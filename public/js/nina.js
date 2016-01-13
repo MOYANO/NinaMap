@@ -137,9 +137,14 @@ App.Views.PanelPvView = Backbone.View.extend({
         var a = $("#panel_pv")
         if($("#panel_pv").css("display") == 'block'){
           $("#panel_pv").css("display","none");
+          $("#btn_pv").find("button").removeClass("nina-transparent-bg");
+          $("#btn_pv").removeClass("nina-smokescreen");
        }else{
          $("#panel_pv").css("display", 'block');
+         $("#btn_pv").find("button").addClass("nina-transparent-bg");
+          $("#btn_pv").addClass("nina-smokescreen");
        }
+
        // dialog.dialog( "open" );
 
       
