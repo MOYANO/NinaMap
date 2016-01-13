@@ -105,8 +105,12 @@ App.Views.PanelPvView = Backbone.View.extend({
       
       if(this.el.style.display == 'block'){
           this.el.style.display = 'none';
+          $("#btn_pv").find("button").removeClass("nina-transparent-bg");
+          $("#btn_pv").removeClass("nina-smokescreen");
        }else{
           this.el.style.display = 'block';
+          $("#btn_pv").find("button").addClass("nina-transparent-bg");
+          $("#btn_pv").addClass("nina-smokescreen");
        }
       
 
