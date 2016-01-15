@@ -146,10 +146,10 @@ body {
 #mapa{
 	z-index:0;
 	
-float:left;
-    display:inline-block;
- width: 100%;
- height:100%;
+  float:left;
+  display:inline-block;
+  width: 100%;
+  height:100%;
 
 }
 #panel_graficos{
