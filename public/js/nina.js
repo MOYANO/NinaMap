@@ -57,18 +57,41 @@
      App.Views.NavBarView = Backbone.View.extend({
       // Instead of generating a new element, bind to the existing skeleton of
       // the App already present in the HTML.
-       el: $("#nav_bar"),
+       el: $("#tf-menu"),
        events: {
 
         
-        "click #btn_salir":"cerrar"
+        "click #btn_Search":"geocodifica"
         
       
       },
-      cerrar: function(e) {
+      geocodifica: function(e) {
       
-      Parse.User.logOut();
+        var address = document.getElementById('input_geocodifica').value;
+         var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
 
+            var latlng = L.latLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+            App.map.setView(latlng,15);
+            var greenIcon = L.icon({
+                iconUrl: '../img/markers/leaf-green.png',
+                shadowUrl: '../img/markers/leaf-shadow.png',
+
+                iconSize:     [38, 95], // size of the icon
+                shadowSize:   [50, 64], // size of the shadow
+                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+            L.marker([results[0].geometry.location.lat(), results[0].geometry.location.lng()],{icon: greenIcon}).addTo(App.map);
+           
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+     
        // dialog.dialog( "open" );
 
      },
@@ -269,14 +292,29 @@ App.Views.PanelPvView = Backbone.View.extend({
           center: [40.432703, -3.700872],
           zoom: 15
         });
+  //google map
+      //  var map = new google.maps.Map(document.getElementById('mapa'), {
+      //   zoom: 15,
+      //   center: {lat:  40.432703, lng: -3.700872},
+      //   mapTypeControl: true,
+      //   mapTypeControlOptions: {
+      //       style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      //       position: google.maps.ControlPosition.LEFT_BOTTOM
+      //   }
+     
+      // });
 
       App.map = map;
       var gj =  new L.GeoJSON();
       //create empty geojson object and add it to the map
       App.map.addLayer(gj);
-      L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png', {
+     
+      L.tileLayer('https://cartodb-basemaps-a.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png', {
           attribution: 'Stamen'
       }).addTo(App.map);
+
+      
+
 
       App.map.on('click', function(e) {        
           
