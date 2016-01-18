@@ -61,10 +61,20 @@
        events: {
 
         
-        "click #btn_Search":"geocodifica",
+        "click #btn_Search":"btn_geocodifica",
         "keypress #input_geocodifica": "procesa_key"
         
       
+      },
+      btn_geocodifica: function(e) {
+       
+        var keywords = $("#input_geocodifica").val();
+
+        if(keywords === '') return;
+
+        this.geocodifica();
+      
+
       },
       procesa_key: function(e) {
         if ( e.which === 13 ) { 
@@ -73,7 +83,7 @@
         if(keywords === '') return;
 
         this.geocodifica();
-      }
+       }
 
       },
       geocodifica: function(e) {
@@ -99,7 +109,7 @@
             L.marker([results[0].geometry.location.lat(), results[0].geometry.location.lng()],{icon: greenIcon}).addTo(App.map);
            
           } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            alert('Resultado: ' + status);
           }
         });
      
