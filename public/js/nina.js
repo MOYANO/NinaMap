@@ -61,9 +61,20 @@
        events: {
 
         
-        "click #btn_Search":"geocodifica"
+        "click #btn_Search":"geocodifica",
+        "keypress #input_geocodifica": "procesa_key"
         
       
+      },
+      procesa_key: function(e) {
+        if ( e.which === 13 ) { 
+        var keywords = $(e.target).val();
+
+        if(keywords === '') return;
+
+        this.geocodifica();
+      }
+
       },
       geocodifica: function(e) {
       
