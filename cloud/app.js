@@ -3,6 +3,8 @@ var expressLayouts = require('cloud/express-layouts');
 var parseExpressCookieSession = require('parse-express-cookie-session');
 var parseExpressHttpsRedirect = require('parse-express-https-redirect');
 
+
+
 var app = express();
 
 // Global app configuration section
@@ -13,6 +15,8 @@ app.use(parseExpressHttpsRedirect());    // Automatically redirect non-secure ur
 app.use(express.bodyParser());    // Middleware for reading request body
 app.use(express.methodOverride());
 app.use(express.cookieParser('SECRET_SIGNING_KEY'));
+//app.use(express.cookieSession());
+//app.use(express.csrf());
 app.use(parseExpressCookieSession({
   fetchUser: true,
   key: 'image.sess',
@@ -21,10 +25,23 @@ app.use(parseExpressCookieSession({
   }
 }));
 
+//app.use(express.csrf());
 
 
 app.locals._ = require('underscore');
 
+
+// app.use(function (err, req, res, next) {
+//   if (err.code !== 'EBADCSRFTOKEN') return next(err)
+ 
+//   // handle CSRF token errors here
+//   res.status(403)
+//   res.send('session has expired or form tampered with')
+// })
+// app.use(function (req, res, next) {
+//   res.locals.csrftoken = req.csrfToken();
+//   next();
+// });
 
 // Homepage endpoint
 
@@ -36,7 +53,7 @@ app.get('/', function(req, res) {
     
   }
   else{
-     res.render('home');
+     res.render('home',{ csrf: 'sss'});
   }
 });
 
@@ -47,7 +64,14 @@ app.get('/map', function(req, res) {
   });
 
 app.get('/Precios', function(req, res) {
-   res.send('hola');
+   if (Parse.User.current()) {
+    res.send('logado');
+       
+    }
+    else{
+       res.send('no logado');
+    }
+   
   });
 
 app.get('/logOut', function(req, res) {
@@ -58,7 +82,7 @@ app.get('/logOut', function(req, res) {
  app.post('/logIn', function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
      
-      res.redirect('map');
+      res.redirect('');
     }, function(error) {
       // Show the error message and let the user try again
        res.render('login.ejs',{error:error.message});
