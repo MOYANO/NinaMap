@@ -43,8 +43,11 @@
          
               
             <ul class="nav navbar-nav navbar-right dropdown nina-navbar-right">
-                 <a href="#" class="dropdown-toggle  btn btn-default btn-sm navbar-btn" data-toggle="dropdown" >  <span id="user" class="glyphicon glyphicon-user nina-glyph" >
-                        <%= Parse.User.current().get('username') %></span><span class="caret"></span></a>
+                 <a href="#" class="dropdown-toggle  btn btn-default btn-sm navbar-btn" data-toggle="dropdown" > 
+                        <span id="user" class="glyphicon glyphicon-user nina-glyph" > </span>
+                        <span > <%= Parse.User.current().get('username') %></span>
+                        <span class="caret"></span>
+                 </a>
             
         
               <ul class="dropdown-menu" role="menu">

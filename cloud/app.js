@@ -25,14 +25,10 @@ app.use(parseExpressCookieSession({
     maxAge: 3600000 * 24 * 30
   }
 }));
-app.use(express.csrf());
+app.use(express.csrf({}));
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(function(req, res, next){
-  res.setHeader('X-CSRF-Token', req.session._csrf);
-  next();
-});
-//app.use(express.csrf());
+
 
 
 app.locals._ = require('underscore');
@@ -46,12 +42,13 @@ app.locals._ = require('underscore');
 //   res.send('session has expired or form tampered with')
 // })
  app.use(function (req, res, next) {
-   res.locals.csrftoken = req.session._csrf;
+   res.locals.csrftoken = req.csrfToken();
    next();
  });
 
 // Homepage endpoint
-
+ Parse.initialize("yNxZHA2tRlRYdH7yKqh7dYdayslV0OCa8BJMdIY2",
+                   "aIu5Xf9dmVWNN3cjNH0WvSry8TErHbTFSUA3o2L9");
 
 app.get('/', function(req, res) {
   // Get the latest images to show
@@ -60,6 +57,7 @@ app.get('/', function(req, res) {
     
   }
   else{
+    // res.render('home',{ csrf: req.session._csrf});
      res.render('home',{ csrf: req.session._csrf});
   }
 });
