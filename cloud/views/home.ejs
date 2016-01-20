@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#tf-home" class="page-scroll"> <%= csrf %></a></li>
+            <li><a href="#tf-home" class="page-scroll"> Home</a></li>
             <li><a href="#tf-about" class="page-scroll">About</a></li>
             <li><a href="#tf-team" class="page-scroll">Team</a></li>
             <li><a href="#tf-services" class="page-scroll">Services</a></li>
@@ -539,6 +539,7 @@
             <form  role="form"  action="/logIn" method="post">
             
             <label for="inputEmail" class="sr-only">Email </label>
+            <input type="hidden" name="_csrf" value=<%= csrf %>/>
             <input  id="inputEmail" class="form-control"  name="username" placeholder="Email address" required autofocus>
             <label for="inputPassword" class="sr-only">Contraseña</label>
             <input type="password" id="inputPassword" class="form-control"  name="password" placeholder="Contraseña" required>
@@ -565,6 +566,7 @@
             <form  role="form"  action="/register" method="post">
             
             <label for="inputEmail" class="sr-only">Usuario </label>
+
             <input type="text" id="inputUser" class="form-control"  name="username" placeholder="Usuario" required autofocus>
             <label for="inputPassword" class="sr-only">Contraseña</label>
             <input type="password" id="inputPassword" class="form-control"  name="password" placeholder="Contraseña" required>
