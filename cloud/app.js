@@ -53,7 +53,7 @@ app.locals._ = require('underscore');
 app.get('/', function(req, res) {
   // Get the latest images to show
   if (Parse.User.current()) {
-    res.render('map');
+    res.render('map',{token:Parse.User.current().getSessionToken()});
     
   }
   else{
@@ -88,6 +88,7 @@ app.get('/logOut', function(req, res) {
     Parse.User.logIn(req.body.username, req.body.password).then(function(user) {
      
       res.redirect('');
+     
     }, function(error) {
       // Show the error message and let the user try again
        res.render('login.ejs',{error:error.message});
