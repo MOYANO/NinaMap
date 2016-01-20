@@ -13,9 +13,10 @@ app.set('view engine', 'ejs');    // Set the template engine
 app.use(expressLayouts);          // Use the layout engine for express
 app.use(parseExpressHttpsRedirect());    // Automatically redirect non-secure urls to secure ones
 app.use(express.bodyParser());    // Middleware for reading request body
-app.use(express.methodOverride());
+
+
 app.use(express.cookieParser('SECRET_SIGNING_KEY'));
-//app.use(express.cookieSession());
+app.use(express.cookieSession());
 //app.use(express.csrf());
 app.use(parseExpressCookieSession({
   fetchUser: true,
@@ -24,7 +25,13 @@ app.use(parseExpressCookieSession({
     maxAge: 3600000 * 24 * 30
   }
 }));
-
+app.use(express.csrf());
+app.use(express.methodOverride());
+app.use(app.router);
+app.use(function(req, res, next){
+  res.setHeader('X-CSRF-Token', req.session._csrf);
+  next();
+});
 //app.use(express.csrf());
 
 
@@ -38,10 +45,10 @@ app.locals._ = require('underscore');
 //   res.status(403)
 //   res.send('session has expired or form tampered with')
 // })
-// app.use(function (req, res, next) {
-//   res.locals.csrftoken = req.csrfToken();
-//   next();
-// });
+ app.use(function (req, res, next) {
+   res.locals.csrftoken = req.session._csrf;
+   next();
+ });
 
 // Homepage endpoint
 
@@ -53,7 +60,7 @@ app.get('/', function(req, res) {
     
   }
   else{
-     res.render('home',{ csrf: 'sss'});
+     res.render('home',{ csrf: req.session._csrf});
   }
 });
 
