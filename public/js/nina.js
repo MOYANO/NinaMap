@@ -339,8 +339,9 @@ App.Views.PanelPvView = Backbone.View.extend({
           attribution: 'Stamen'
       }).addTo(App.map);
 
-      App.map.on('click', function(e) {        
+      // App.map.on('click', function(e) {        
           
+<<<<<<< HEAD
 
         //   Parse.Cloud.run('prueba', {x:e.latlng.lat,y:e.latlng.lng}, {
         //     success: function(result,context) {
@@ -355,6 +356,26 @@ App.Views.PanelPvView = Backbone.View.extend({
       App.map.on('click', function(e) {        
           
           Parse.Cloud.run('isocrona', {x:e.latlng.lat,y:e.latlng.lng}, {
+=======
+      //     if(Parse.User.current() ){
+      //        Parse.Cloud.run('prueba', {x:e.latlng.lat,y:e.latlng.lng}, {
+      //           success: function(result,context) {
+      //           // result is 'Hello world!'
+      //            alert(result);
+              
+      //           },
+      //           error: function(error) {
+      //               alert(error.message);
+      //               document.location.href="/";
+      //           }
+      //         });
+      //     }
+          
+      // });   
+        
+      App.map.on('click', function(e) {        
+           Parse.Cloud.run('isocrona', {x:e.latlng.lat,y:e.latlng.lng}, {
+>>>>>>> origin/master
             success: function(result,context) {
               // result is 'Hello world!'
               var json=JSON.parse(result);
@@ -403,11 +424,19 @@ App.Views.PanelPvView = Backbone.View.extend({
               //alert(result);
           },
           error: function(error) {
+<<<<<<< HEAD
               alert(error);
           }
         });
+=======
+               alert(error.message);
+               document.location.href="/";
+          }
+         
+       });
+>>>>>>> origin/master
 
-    });
+     });
 
 
  });
@@ -430,6 +459,11 @@ App.Views.PanelPvView = Backbone.View.extend({
 
   new App.Router;
   new App.Views.AppView;
+  new App.Views.MapView({});
+  new App.Views.PanelPvView({});
+  new App.Views.MapTool({});
+  new App.Views.NavBarView({});
+  
  
   Backbone.history.start();
 
