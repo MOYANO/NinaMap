@@ -62,9 +62,14 @@
 
         
         "click #btn_Search":"btn_geocodifica",
+        "click #btn_pc":"show_pc",
         "keypress #input_geocodifica": "procesa_key"
         
       
+      },
+      show_pc: function(e) {
+
+        $("#mapa").height("450px");
       },
       btn_geocodifica: function(e) {
        
@@ -337,75 +342,75 @@ App.Views.PanelPvView = Backbone.View.extend({
       App.map.on('click', function(e) {        
           
 
-          Parse.Cloud.run('prueba', {x:e.latlng.lat,y:e.latlng.lng}, {
+        //   Parse.Cloud.run('prueba', {x:e.latlng.lat,y:e.latlng.lng}, {
+        //     success: function(result,context) {
+        //       // result is 'Hello world!'
+        //        alert(result);
+            
+        //   },
+        //   error: function(error) {
+        //       alert(error.message);
+        //   }
+        // });
+      App.map.on('click', function(e) {        
+          
+          Parse.Cloud.run('isocrona', {x:e.latlng.lat,y:e.latlng.lng}, {
             success: function(result,context) {
               // result is 'Hello world!'
-               alert(result);
-            
+              var json=JSON.parse(result);
+                    toGeoJSON(json.saPolygons,
+                                function(d){
+                                   // gj.addGeoJSON(d)
+                                    var fl = d.features[0].geometry.coordinates[0].length;
+                                    var i = 0;
+                                    var sql="";
+                                    var sql_defi="";
+                                    while(fl>i){
+
+                                        sql = sql + d.features[0].geometry.coordinates[0][i][0]+ " " + d.features[0].geometry.coordinates[0][i][1] + ",";
+
+                                        i++;
+                                    }
+                                    sql =sql.substring(0, sql.length-1);
+                                    sql_defi= "'POLYGON((" + sql + "))'";
+                                    sql_defi= "SELECT cartodb_id, the_geom, the_geom_webmercator FROM madrid WHERE ST_Intersects( the_geom, ST_SetSRID(ST_GeomFromText(" + sql_defi + ",4326) , 4326))";
+
+                                    //this.App.Functions.select(sql_defi);
+                                    gj.addData(d);
+
+                                     cartodb.createLayer(App.map, {
+                                        user_name: 'ninayom',
+                                        type: 'cartodb',
+                                        sublayers: [{
+                                          sql: sql_defi,
+                                          cartocss:  '#madrid{polygon-fill: #A53ED5;polygon-opacity: 0.7;line-color: #FFF;line-width: 1;line-opacity: 1;}'
+                                          //,
+                                          //cartocss: '#madrid_1 {marker-fill-opacity: 0.9;marker-line-color: #FFF;marker-line-width: 1;marker-line-opacity: 1;marker-placement: point;marker-type: ellipse;marker-width: 10;marker-fill: #229A00;marker-allow-overlap: true;}'
+                                        }]
+                                      }, {
+                                          https: true
+                                        })
+                                      .addTo(App.map) // add the layer to our map which already contains 1 sublayer
+                                      .done(function(layer) {
+
+                                            var sql = new cartodb.SQL({ user: 'ninayom' });
+                                              sql.getBounds(sql_defi).done(function(bounds) {
+                                                App.map.fitBounds(bounds)
+                                              });
+                                            
+                                      });
+              });
+              //alert(result);
           },
           error: function(error) {
-              alert(error.message);
+              alert(error);
           }
         });
-      // App.map.on('click', function(e) {        
-          
-      //     Parse.Cloud.run('isocrona', {x:e.latlng.lat,y:e.latlng.lng}, {
-      //       success: function(result,context) {
-      //         // result is 'Hello world!'
-      //         var json=JSON.parse(result);
-      //               toGeoJSON(json.saPolygons,
-      //                           function(d){
-      //                              // gj.addGeoJSON(d)
-      //                               var fl = d.features[0].geometry.coordinates[0].length;
-      //                               var i = 0;
-      //                               var sql="";
-      //                               var sql_defi="";
-      //                               while(fl>i){
-
-      //                                   sql = sql + d.features[0].geometry.coordinates[0][i][0]+ " " + d.features[0].geometry.coordinates[0][i][1] + ",";
-
-      //                                   i++;
-      //                               }
-      //                               sql =sql.substring(0, sql.length-1);
-      //                               sql_defi= "'POLYGON((" + sql + "))'";
-      //                               sql_defi= "SELECT cartodb_id, the_geom, the_geom_webmercator FROM madrid WHERE ST_Intersects( the_geom, ST_SetSRID(ST_GeomFromText(" + sql_defi + ",4326) , 4326))";
-
-      //                               //this.App.Functions.select(sql_defi);
-      //                               gj.addData(d);
-
-      //                                cartodb.createLayer(App.map, {
-      //                                   user_name: 'ninayom',
-      //                                   type: 'cartodb',
-      //                                   sublayers: [{
-      //                                     sql: sql_defi,
-      //                                     cartocss:  '#madrid{polygon-fill: #A53ED5;polygon-opacity: 0.7;line-color: #FFF;line-width: 1;line-opacity: 1;}'
-      //                                     //,
-      //                                     //cartocss: '#madrid_1 {marker-fill-opacity: 0.9;marker-line-color: #FFF;marker-line-width: 1;marker-line-opacity: 1;marker-placement: point;marker-type: ellipse;marker-width: 10;marker-fill: #229A00;marker-allow-overlap: true;}'
-      //                                   }]
-      //                                 }, {
-      //                                     https: true
-      //                                   })
-      //                                 .addTo(App.map) // add the layer to our map which already contains 1 sublayer
-      //                                 .done(function(layer) {
-
-      //                                       var sql = new cartodb.SQL({ user: 'ninayom' });
-      //                                         sql.getBounds(sql_defi).done(function(bounds) {
-      //                                           App.map.fitBounds(bounds)
-      //                                         });
-                                            
-      //                                 });
-      //         });
-      //         //alert(result);
-      //     },
-      //     error: function(error) {
-      //         alert(error);
-      //     }
-      //   });
 
     });
 
 
-
+ });
      
       
         
