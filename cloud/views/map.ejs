@@ -139,16 +139,12 @@
 
 	<script type="text/javascript">
  
-   
-   new App.Views.MapView({});
-   new App.Views.PanelPvView({});
-   new App.Views.MapTool({});
-   new App.Views.NavBarView({});
-     Parse.User.become("<%= token%>").then(function (user) {
-
+  Parse.User.become("<%= token%>").then(function (user) {
+      
     }, function (error) {
       // The token could not be validated.
-    });
+  }); 
+  
  // $( document ).ready(function() {
  //  // Handler for .ready() called.
   
