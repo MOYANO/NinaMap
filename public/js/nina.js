@@ -62,8 +62,7 @@
 
         
         "click #btn_Search":"btn_geocodifica",
-        "click #btn_pc":"show_pc",
-        "keypress #input_geocodifica": "procesa_key"
+        "click #btn_pc":"show_pc"
         
       
       },
@@ -81,46 +80,8 @@
       
 
       },
-      procesa_key: function(e) {
-        if ( e.which === 13 ) { 
-        var keywords = $(e.target).val();
-
-        if(keywords === '') return;
-
-        this.geocodifica();
-       }
-
-      },
-      geocodifica: function(e) {
-      
-        var address = document.getElementById('input_geocodifica').value;
-         var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === google.maps.GeocoderStatus.OK) {
-
-            var latlng = L.latLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-            App.map.setView(latlng,15);
-            var greenIcon = L.icon({
-                iconUrl: '../img/markers/leaf-green.png',
-                shadowUrl: '../img/markers/leaf-shadow.png',
-
-                iconSize:     [38, 95], // size of the icon
-                shadowSize:   [50, 64], // size of the shadow
-                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-                shadowAnchor: [4, 62],  // the same for the shadow
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
-
-            L.marker([results[0].geometry.location.lat(), results[0].geometry.location.lng()],{icon: greenIcon}).addTo(App.map);
-           
-          } else {
-            alert('Resultado: ' + status);
-          }
-        });
      
-       // dialog.dialog( "open" );
-
-     },
+     
      logOut: function(e) {
       
         
@@ -268,16 +229,57 @@ App.Views.PanelPvView = Backbone.View.extend({
 
   App.Views.MapView= Backbone.View.extend({
 
-   el: $('#mapa'),
+   el: $('#main_container'),
 
     events: {
 
        "click #a_salir": "salir",
        "click #btn_graficos": "mostrar_panel",
        "click #btn_pv": "mostrar_panel",
-       "click #map": "click_map"
+       "click #map": "click_map",
+        "keypress #input_geocodifica": "procesa_key"
       
     },
+     procesa_key: function(e) {
+        if ( e.which === 13 ) { 
+        var keywords = $(e.target).val();
+
+        if(keywords === '') return;
+
+        this.geocodifica();
+       }
+
+      },
+     geocodifica: function(e) {
+      
+        var address = document.getElementById('input_geocodifica').value;
+         var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK) {
+
+            var latlng = L.latLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+            App.map.setView(latlng,15);
+            var greenIcon = L.icon({
+                iconUrl: '../img/markers/leaf-green.png',
+                shadowUrl: '../img/markers/leaf-shadow.png',
+
+                iconSize:     [38, 95], // size of the icon
+                shadowSize:   [50, 64], // size of the shadow
+                iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+                shadowAnchor: [4, 62],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+            L.marker([results[0].geometry.location.lat(), results[0].geometry.location.lng()],{icon: greenIcon}).addTo(App.map);
+           
+          } else {
+            alert('Resultado: ' + status);
+          }
+        });
+     
+       // dialog.dialog( "open" );
+
+     },
     
     initialize: function() {
 
@@ -339,7 +341,7 @@ App.Views.PanelPvView = Backbone.View.extend({
           attribution: 'Stamen'
       }).addTo(App.map);
 
-      App.map.on('click', function(e) {        
+         
           
 
         //   Parse.Cloud.run('prueba', {x:e.latlng.lat,y:e.latlng.lng}, {
@@ -410,7 +412,7 @@ App.Views.PanelPvView = Backbone.View.extend({
     });
 
 
- });
+
      
       
         

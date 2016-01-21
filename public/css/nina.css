@@ -81,7 +81,8 @@ body {
 .nina-input-address{
   width: 360px;
  
-    border: none;
+        border-color: #9CA7B1;
+    border-width: 1px;
     border-radius: 3px;
     min-width: 225px;
     padding-right: 0;
@@ -112,9 +113,11 @@ body {
   height: 400px;
 }
 .nina-search-box{
-      padding-top: 9px;
+      padding-top: 120px;
     padding-left: 50px;
-    display: inline-block;
+    position: absolute;
+    z-index: 2;
+
 }
 .nina-visible{
   display:none;
@@ -192,8 +195,7 @@ width: 100%;
   margin-bottom: 0px;
   background-image: none;
   box-shadow:none;
-  border-bottom-width: 2px;
-  border-bottom-color:rgba(41, 145, 197, 0.6) !important;
+ 
   
  
 
