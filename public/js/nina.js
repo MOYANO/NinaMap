@@ -62,14 +62,34 @@
 
         
         "click #btn_Search":"btn_geocodifica",
-        "click #btn_pc":"show_pc"
+        "click #btn_mapa":"show_mapa",
+        "click #btn_pc":"show_pc",
+        "click #btn_informes":"show_informes"
         
       
       },
-      show_pc: function(e) {
+       show_mapa: function(e) {
 
-        $("#mapa").height("450px");
+        $(".nina-active").removeClass("nina-active");
+         $(e.currentTarget).addClass('nina-active');
+          $(".nina-container").css("display","none")
+         $("#mapa_container").css("display","block")
       },
+       show_pc: function(e) {
+
+        $(".nina-active").removeClass("nina-active");
+         $(e.currentTarget).addClass('nina-active');
+         $(".nina-container").css("display","none")
+         $("#pc_container").css("display","block")
+      },
+      show_informes: function(e) {
+
+        $(".nina-active").removeClass("nina-active");
+         $(e.currentTarget).addClass('nina-active');
+          $(".nina-container").css("display","none")
+         $("#informes_container").css("display","block")
+      },
+
       btn_geocodifica: function(e) {
        
         var keywords = $("#input_geocodifica").val();

@@ -1,6 +1,6 @@
 
 <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top nina-navbar" id="nav_bar">
-      <div class="nina-container">
+      <div class="nina-navbar-container">
        
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -11,17 +11,12 @@
           </button>
           <a class="navbar-brand" href="">NinaMap</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav ">
-            <li><a href="#tf-home" class="page-scroll"> Home</a></li>
-            <li><a href="#tf-about" class="page-scroll">About</a></li>
-            <li><a href="#tf-team" class="page-scroll">Team</a></li>
-            <li><a href="#tf-services" class="page-scroll">Services</a></li>
-            <li><a href="#tf-works" class="page-scroll">Portfolio</a></li>
-           <!--  <li><a href="#tf-testimonials" class="page-scroll">Testimonials</a></li>
-            <li><a href="#tf-contact" class="page-scroll">Contact</a></li> -->
-             <li><a   data-toggle="modal" data-target="#modalLogin" >LogIn</a></li>
-             <li><a   data-toggle="modal" data-target="#modalRegister" >Register</a></li>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
+          <ul class="nav navbar-nav nina-navbar-middle">
+            <li><a id="btn_mapa" > MAPA</a></li>
+            <li><a id="btn_pc" >PANEL DE CONTROL</a></li>
+            <li><a id="btn_informes" >INFORMES</a></li>
+        
               
           </ul>
           <ul class="nav navbar-nav navbar-right dropdown nina-navbar-right">
@@ -116,35 +111,44 @@
      
   <!-- <div id="panel_pv" class="nina-panel"></div> -->
  
-  <div class="panel panel-default nina-panel  nina-visible" id="panel_pv">
-    <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove icon-white"></i></button>
-      <div class="panel-heading nina-panel-heading">
-        <h8 class="panel-title">Puntos de Venta</h8>
-        
-      </div>
-      <div class="panel-body">
-        Panel content
-      </div>
-    </div>
-    
-   <div class="nina-search-box ">
-
-                 <input autocomplete="off" id="input_geocodifica"  type="text" placeholder="Buscador de direcciones" class="nina-input-address">
-                  <button id="btn_Search" class="btn btn-sm nina-btn-search">
-                  <i id="btn_search" class="glyphicon glyphicon-search"></i></button>
-    </div>
-    <div class="overlay-super map-buttons darkglass" id="MapTool" style="opacity: 1; display: block; height: 105px;">
-            <div class="cpanel3" >
-                <div title="Puntos de Venta" class="btn-bg" id="btn_pv" >
-                    <button class="btn btn-mini btn-kilo btn-xs" ><i id="toggleQuickviewIcon" class="glyphicon glyphicon-shopping-cart "></i></button>
-                </div>
-                <div title="Advanced map search" id="filters-btn-bg" class="btn-bg">
-                    <button class="btn btn-mini btn-kilo" id="toggleFilters"><i id="toggleFiltersIcon" class="icon-zoom-in icon-white"></i></button>
-                </div>
+ 
+    <div id="mapa_container" class="nina-container"> 
+          <div class="panel panel-default nina-panel  nina-visible" id="panel_pv">
+          <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove icon-white"></i></button>
+            <div class="panel-heading nina-panel-heading">
+              <h8 class="panel-title">Puntos de Venta</h8>
+              
             </div>
-           
+            <div class="panel-body">
+              Panel content
+            </div>
           </div>
-    <div id="mapa"> 
+    
+         <div class="nina-search-box ">
+
+                       <input autocomplete="off" id="input_geocodifica"  type="text" placeholder="Buscador de direcciones" class="nina-input-address">
+                        <button id="btn_Search" class="btn btn-sm nina-btn-search">
+                        <i id="btn_search" class="glyphicon glyphicon-search"></i></button>
+          </div>
+          <div class="overlay-super map-buttons darkglass" id="MapTool" style="opacity: 1; display: block; height: 105px;">
+                  <div class="cpanel3" >
+                      <div title="Puntos de Venta" class="btn-bg" id="btn_pv" >
+                          <button class="btn btn-mini btn-kilo btn-xs" ><i id="toggleQuickviewIcon" class="glyphicon glyphicon-shopping-cart "></i></button>
+                      </div>
+                      <div title="Advanced map search" id="filters-btn-bg" class="btn-bg">
+                          <button class="btn btn-mini btn-kilo" id="toggleFilters"><i id="toggleFiltersIcon" class="icon-zoom-in icon-white"></i></button>
+                      </div>
+                  </div>
+                 
+          </div>
+          <div id="mapa">
+            
+          </div>
+    </div>
+     <div id="pc_container" class="nina-container"> 
+         
+    </div>
+     <div id="informes_container" class="nina-container"> 
          
     </div>
     
@@ -193,6 +197,9 @@
     }, function (error) {
       // The token could not be validated.
   }); 
+  $("#btn_mapa").addClass("nina-active");
+   $("#mapa_container").css("display","block");
+   App.map.invalidateSize();
   
  // $( document ).ready(function() {
  //  // Handler for .ready() called.
