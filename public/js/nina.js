@@ -19,40 +19,7 @@
 	   Parse.initialize("yNxZHA2tRlRYdH7yKqh7dYdayslV0OCa8BJMdIY2",
                    "aIu5Xf9dmVWNN3cjNH0WvSry8TErHbTFSUA3o2L9");
 
-	   App.Views.AppView = Backbone.View.extend({
-	    // Instead of generating a new element, bind to the existing skeleton of
-	    // the App already present in the HTML.
-	     el: $("#app"),
-       events: {
-
-        
-        "click #btn_show_log_in":"logIn"
-        
-      
-      },
-      logIn: function(e) {
-      
-
-       // dialog.dialog( "open" );
-
-     },
-     logOut: function(e) {
-      
-        
-        
-       
-        
-      
-
-     },
-	    initialize: function() {
-	      this.render();
-	    },
-
-	    render: function() {
-	       
-	    }
-	});
+	  
 
      App.Views.NavBarView = Backbone.View.extend({
       // Instead of generating a new element, bind to the existing skeleton of
@@ -207,6 +174,10 @@ App.Views.PanelPvView = Backbone.View.extend({
      },
       initialize: function() {
         this.render();
+        $(window).on("resize", this.invalidatesize);
+      },
+      invalidatesize: function(){
+         App.map.invalidateSize();
       },
 
       render: function() {
@@ -452,7 +423,7 @@ App.Views.PanelPvView = Backbone.View.extend({
 
  
   new App.Router;
-  new App.Views.AppView;
+ 
   new App.Views.MapView({});
   new App.Views.PanelPvView({});
   new App.Views.MapTool({});
