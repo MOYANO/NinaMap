@@ -181,7 +181,7 @@ App.Views.PanelPvView = Backbone.View.extend({
       },
 
       render: function() {
-         
+         $('#example').DataTable();
       }
   });
 

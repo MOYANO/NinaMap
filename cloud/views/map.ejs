@@ -46,111 +46,79 @@
       </div>
 </nav>
 
-<!-- <nav id="tf-menu" class="navbar navbar-default navbar-fixed-top nina-navbar" id="nav_bar">
-      <div class="nina-container">
-       
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="">NinaMap</a>
-        </div>
 
-        
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-         
-            
-            <ul class="nav navbar-nav ">
-            <li><div class="nina-search-box ">
+ 
 
-                 <input autocomplete="off" id="input_geocodifica"  type="text" placeholder="Buscador de direcciones" class="nina-input-address">
-                  <button id="btn_Search" class="btn btn-sm nina-btn-search">
-                  <i id="btn_search" class="glyphicon glyphicon-search"></i></button>
-                </div>
-            </li>
-         
-            <li><a href="#precios">Precios</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#cotacto">Contacto</a></li>
-           
-          </ul>
-         
-              
-            <ul class="nav navbar-nav navbar-right dropdown nina-navbar-right">
-                 <a href="#" class="dropdown-toggle  btn btn-default btn-sm navbar-btn" data-toggle="dropdown" > 
-                        <span id="user" class="glyphicon glyphicon-user nina-glyph" > </span>
-                        <span > <%= Parse.User.current().get('username') %></span>
-                        <span class="caret"></span>
-                 </a>
-            
-        
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Mi perfil</a></li>
-                <li><a href="#">Panel de Control</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                
-                   <li><a href="/logOut" id="btn_salir" data-action="post">Cerrar Sesión</a></li>
-                 
-              
-              </ul>
-            
-          </ul>
+ 
+ 
+<div id="mapa_container" class="nina-container"> 
+      <div class="panel panel-default nina-panel  nina-visible" id="panel_pv">
+      <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove icon-white"></i></button>
+        <div class="panel-heading nina-panel-heading">
+          <h8 class="panel-title">Puntos de Venta</h8>
           
         </div>
+        <div class="panel-body">
+          Panel content
+        </div>
       </div>
-</nav> -->
 
+     <div class="nina-search-box ">
 
-
-
-     
-  <!-- <div id="panel_pv" class="nina-panel"></div> -->
- 
- 
-    <div id="mapa_container" class="nina-container"> 
-          <div class="panel panel-default nina-panel  nina-visible" id="panel_pv">
-          <button id="closeLeft" type="button" class="nina-close" style="display: block;"><i class="glyphicon glyphicon-remove icon-white"></i></button>
-            <div class="panel-heading nina-panel-heading">
-              <h8 class="panel-title">Puntos de Venta</h8>
-              
-            </div>
-            <div class="panel-body">
-              Panel content
-            </div>
-          </div>
-    
-         <div class="nina-search-box ">
-
-                       <input autocomplete="off" id="input_geocodifica"  type="text" placeholder="Buscador de direcciones" class="nina-input-address">
-                        <button id="btn_Search" class="btn btn-sm nina-btn-search">
-                        <i id="btn_search" class="glyphicon glyphicon-search"></i></button>
-          </div>
-          <div class="overlay-super map-buttons darkglass" id="MapTool" style="opacity: 1; display: block; height: 105px;">
-                  <div class="cpanel3" >
-                      <div title="Puntos de Venta" class="btn-bg" id="btn_pv" >
-                          <button class="btn btn-mini btn-kilo btn-xs" ><i id="toggleQuickviewIcon" class="glyphicon glyphicon-shopping-cart "></i></button>
-                      </div>
-                      <div title="Advanced map search" id="filters-btn-bg" class="btn-bg">
-                          <button class="btn btn-mini btn-kilo" id="toggleFilters"><i id="toggleFiltersIcon" class="icon-zoom-in icon-white"></i></button>
-                      </div>
+                   <input autocomplete="off" id="input_geocodifica"  type="text" placeholder="Buscador de direcciones" class="nina-input-address">
+                    <button id="btn_Search" class="btn btn-sm nina-btn-search">
+                    <i id="btn_search" class="glyphicon glyphicon-search"></i></button>
+      </div>
+      <div class="overlay-super map-buttons darkglass" id="MapTool" style="opacity: 1; display: block; height: 105px;">
+              <div class="cpanel3" >
+                  <div title="Puntos de Venta" class="btn-bg" id="btn_pv" >
+                      <button class="btn btn-mini btn-kilo btn-xs" ><i id="toggleQuickviewIcon" class="glyphicon glyphicon-shopping-cart "></i></button>
                   </div>
-                 
-          </div>
-          <div id="mapa">
-            
-          </div>
+                  <div title="Advanced map search" id="filters-btn-bg" class="btn-bg">
+                      <button class="btn btn-mini btn-kilo" id="toggleFilters"><i id="toggleFiltersIcon" class="icon-zoom-in icon-white"></i></button>
+                  </div>
+              </div>
+             
+      </div>
+      <div id="mapa">
+        
+      </div>
+</div>
+
+<div id="pc_container" class="nina-container"> 
+    <div id="nav_pc">
+      
     </div>
-     <div id="pc_container" class="nina-container"> 
+
+    <div id="table_container">
+      <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
+</div>
+
+<div id="informes_container" class="nina-container"> 
          
-    </div>
-     <div id="informes_container" class="nina-container"> 
-         
-    </div>
+</div>
     
 
     <!-- botones -->
