@@ -430,7 +430,7 @@ App.Views.PanelPvView = Backbone.View.extend({
   new App.Views.PanelPvView({});
   new App.Views.MapTool({});
   new App.Views.NavBarView({});
-  App.map.invalidateSize();
+
  
   Backbone.history.start();
 
