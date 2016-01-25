@@ -175,6 +175,7 @@ App.Views.PanelPvView = Backbone.View.extend({
       initialize: function() {
         this.render();
         $(window).on("resize", this.invalidatesize);
+         App.map.invalidateSize();
       },
       invalidatesize: function(){
          App.map.invalidateSize();
@@ -182,6 +183,7 @@ App.Views.PanelPvView = Backbone.View.extend({
 
       render: function() {
          $('#example').DataTable();
+
       }
   });
 
@@ -428,6 +430,7 @@ App.Views.PanelPvView = Backbone.View.extend({
   new App.Views.PanelPvView({});
   new App.Views.MapTool({});
   new App.Views.NavBarView({});
+  App.map.invalidateSize();
  
   Backbone.history.start();
 

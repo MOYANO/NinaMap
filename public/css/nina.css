@@ -251,8 +251,10 @@ float:none !important;
 #nav_pc{
   width:300px;
   height: 100%;
-  background-color:red;
+  background-color:rgba(73,181,193,1) !important;
   display: inline-block;
+  margin-top:50px;
+
 }
 
 #table_container{
