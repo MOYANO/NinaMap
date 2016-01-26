@@ -193,7 +193,8 @@ App.Views.PanelPvView = Backbone.View.extend({
        "click #btn_pv": "mostrar_panel",
        "click #map": "click_map",
         "keypress #input_geocodifica": "procesa_key",
-         "click #btn_pv":"muestra_pv"
+         "click #btn_pv":"muestra_pv",
+      "click #btn_search": "geocodifica"
       
     },
      muestra_pv: function(e) {

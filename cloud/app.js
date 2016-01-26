@@ -1,5 +1,6 @@
 var express = require('express');
 var expressLayouts = require('cloud/express-layouts');
+
 var parseExpressCookieSession = require('parse-express-cookie-session');
 var parseExpressHttpsRedirect = require('parse-express-https-redirect');
 
@@ -10,6 +11,7 @@ var app = express();
 // Global app configuration section
 app.set('views', 'cloud/views');  // Specify the folder to find templates
 app.set('view engine', 'ejs');    // Set the template engine
+//app.set('view options', { layout: false });
 app.use(expressLayouts);          // Use the layout engine for express
 app.use(parseExpressHttpsRedirect());    // Automatically redirect non-secure urls to secure ones
 app.use(express.bodyParser());    // Middleware for reading request body
@@ -58,7 +60,7 @@ app.get('/', function(req, res) {
   }
   else{
     // res.render('home',{ csrf: req.session._csrf});
-     res.render('home',{ csrf: req.session._csrf});
+     res.render('home',{ csrf: req.session._csrf, layout:'layout2.ejs'});
   }
 });
 
