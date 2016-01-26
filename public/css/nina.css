@@ -162,6 +162,14 @@ a:focus{
   border-bottom: none !important;
   border-radius: 0px;
 }
+.nina-panel-tablas{
+  position: absolute;
+  width: 100%;
+}
+.nina-panel-head-tablas{
+  height: 25px;
+  background-color: rgba(28, 32, 38, 0.93) !important;
+}
 .nina-transparent-bg{
     box-shadow: none !important;
     background-color:rgba(0, 0, 0, 0.0)!important;

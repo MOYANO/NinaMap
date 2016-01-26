@@ -67,10 +67,10 @@
       }
   });
 
- App.Views.NavPC = Backbone.View.extend({
+ App.Views.PC = Backbone.View.extend({
       // Instead of generating a new element, bind to the existing skeleton of
       // the App already present in the HTML.
-       el: $("#nav_pc"),
+       el: $("#pc_container"),
        events: {
 
         
@@ -100,6 +100,9 @@
           
      
       initialize: function() {
+        $('#tabla_campanas').DataTable();
+        $('#tabla_usuarios').DataTable();
+        $('#tabla_equipos').DataTable();
         this.render();
       },
 
@@ -144,69 +147,7 @@ App.Views.PanelPvView = Backbone.View.extend({
       }
   });
 
-   App.Views.MapTool = Backbone.View.extend({
-      // Instead of generating a new element, bind to the existing skeleton of
-      // the App already present in the HTML.
-       el: $("#MapTool"),
-       events: {
-
-        
-        "click #btn_pv":"muestra_pv"
-        
-      
-      },
-      muestra_pv: function(e) {
-        var a = $("#panel_pv")
-        if($("#panel_pv").css("display") == 'block'){
-          $("#panel_pv").css("display","none");
-          $("#btn_pv").find("button").removeClass("nina-transparent-bg");
-          $("#btn_pv").removeClass("nina-smokescreen");
-       }else{
-         $("#panel_pv").css("display", 'block');
-         $("#btn_pv").find("button").addClass("nina-transparent-bg");
-          $("#btn_pv").addClass("nina-smokescreen");
-       }
-
-       // dialog.dialog( "open" );
-
-      
-      // if ( Parse.User.current() ) {
-      //       Parse.User.logOut();
-
-      //       // check if really logged out
-      //       if (Parse.User.current())
-      //           console.log("Failed to log out!");
-      //   }
-
-      //   // do redirect
-      //   //window.location.replace("Sign_In.html");
-      //   // or
-      //   window.location.href = "/";
-
-     },
-     logOut: function(e) {
-      
-        
-        
-       
-        
-      
-
-     },
-      initialize: function() {
-        this.render();
-        $(window).on("resize", this.invalidatesize);
-         App.map.invalidateSize();
-      },
-      invalidatesize: function(){
-         App.map.invalidateSize();
-      },
-
-      render: function() {
-         $('#example').DataTable();
-
-      }
-  });
+  
 
 	App.Router = Backbone.Router.extend({
 
@@ -251,9 +192,26 @@ App.Views.PanelPvView = Backbone.View.extend({
        "click #btn_graficos": "mostrar_panel",
        "click #btn_pv": "mostrar_panel",
        "click #map": "click_map",
-        "keypress #input_geocodifica": "procesa_key"
+        "keypress #input_geocodifica": "procesa_key",
+         "click #btn_pv":"muestra_pv"
       
     },
+     muestra_pv: function(e) {
+        var a = $("#panel_pv")
+        if($("#panel_pv").css("display") == 'block'){
+          $("#panel_pv").css("display","none");
+          $("#btn_pv").find("button").removeClass("nina-transparent-bg");
+          $("#btn_pv").removeClass("nina-smokescreen");
+       }else{
+         $("#panel_pv").css("display", 'block');
+         $("#btn_pv").find("button").addClass("nina-transparent-bg");
+          $("#btn_pv").addClass("nina-smokescreen");
+       }
+
+     
+
+     },
+
      procesa_key: function(e) {
         if ( e.which === 13 ) { 
         var keywords = $(e.target).val();
@@ -299,6 +257,14 @@ App.Views.PanelPvView = Backbone.View.extend({
 
       
       this.render();
+       $(window).on("resize", this.invalidatesize);
+         App.map.invalidateSize();
+        
+     
+     
+    },
+    invalidatesize: function(){
+         App.map.invalidateSize();
     },
 
     salir: function(){
@@ -449,9 +415,9 @@ App.Views.PanelPvView = Backbone.View.extend({
  
   new App.Views.MapView({});
   new App.Views.PanelPvView({});
-  new App.Views.MapTool({});
+
   new App.Views.NavBarView({});
-  new App.Views.NavPC({});
+  new App.Views.PC({});
 
  
   Backbone.history.start();
