@@ -28,7 +28,7 @@
        events: {
 
         
-        "click #btn_Search":"btn_geocodifica",
+        
         "click #btn_mapa":"show_mapa",
         "click #btn_pc":"show_pc",
         "click #btn_informes":"show_informes"
@@ -39,45 +39,66 @@
 
         $(".nina-active").removeClass("nina-active");
          $(e.currentTarget).addClass('nina-active');
-          $(".nina-container").css("display","none")
-         $("#mapa_container").css("display","block")
+          $(".nina-container").css("display","none");
+         $("#mapa_container").css("display","block");
+         App.map.invalidateSize();
+
       },
        show_pc: function(e) {
 
         $(".nina-active").removeClass("nina-active");
          $(e.currentTarget).addClass('nina-active');
-         $(".nina-container").css("display","none")
-         $("#pc_container").css("display","block")
+         $(".nina-container").css("display","none");
+         $("#pc_container").css("display","block");
       },
       show_informes: function(e) {
 
         $(".nina-active").removeClass("nina-active");
          $(e.currentTarget).addClass('nina-active');
-          $(".nina-container").css("display","none")
-         $("#informes_container").css("display","block")
+          $(".nina-container").css("display","none");
+         $("#informes_container").css("display","block");
+      },
+      initialize: function() {
+        this.render();
       },
 
-      btn_geocodifica: function(e) {
-       
-        var keywords = $("#input_geocodifica").val();
+      render: function() {
+         
+      }
+  });
 
-        if(keywords === '') return;
+ App.Views.NavPC = Backbone.View.extend({
+      // Instead of generating a new element, bind to the existing skeleton of
+      // the App already present in the HTML.
+       el: $("#nav_pc"),
+       events: {
 
-        this.geocodifica();
+        
+        "click a":"set_active"
+        
       
-
       },
-     
-     
-     logOut: function(e) {
-      
-        
-        
-       
-        
-      
+       set_active: function(e) {
 
-     },
+       
+         $(".panel-heading").removeClass('nina-active');
+         $(e.currentTarget).parent().parent().addClass('nina-active');
+
+         
+      },
+      set_hover: function(e) {
+         $(".panel-heading").removeClass('nina-active');
+         $(e.currentTarget).parent().parent().css('background-color','black');
+       
+      },
+      show_informes: function(e) {
+
+       
+      },
+
+    
+          
+     
       initialize: function() {
         this.render();
       },
@@ -183,7 +204,7 @@ App.Views.PanelPvView = Backbone.View.extend({
 
       render: function() {
          $('#example').DataTable();
-         
+
       }
   });
 
@@ -430,6 +451,7 @@ App.Views.PanelPvView = Backbone.View.extend({
   new App.Views.PanelPvView({});
   new App.Views.MapTool({});
   new App.Views.NavBarView({});
+  new App.Views.NavPC({});
 
  
   Backbone.history.start();

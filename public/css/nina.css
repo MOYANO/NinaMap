@@ -11,23 +11,23 @@ body {
   width: 100%;
   height: 100%;
 }
-a:hover, a:focus ~ .panel-heading ~ .panel-default {
 
-    background-color: rgba(73,181,193,1) !important;
-    
+a:focus{
+  text-decoration: none;
+  color: rgba(255,255,255,1) !important;
 }
+
 .panel-default>.panel-heading {
     color: #FFF;
-    background-color: #838D8E;
+    background-color: #B2B7B7;
     border-color: #ddd;
     background-image: none;
+    border-radius: 0px;
 }
-.panel-default>.panel-heading:focus  {
-     background-color: rgba(73,181,193,1) !important;
-}
+
 .panel-group .panel {
-    margin-bottom: 0;
-    border-radius: 4px;
+    margin-bottom: 0px;
+    border-radius: 0px;
 }
 .panel-group .panel+.panel {
     margin-top: 0px;
@@ -76,6 +76,7 @@ a:hover, a:focus ~ .panel-heading ~ .panel-default {
   background-color: rgba(73,181,193,1) !important;
       font-weight: bold;
       font-size: 13px !important;
+      color:white;
 }
 .nina-btn-search{
     background-color: rgba(41, 145, 197, 0.6) !important;
@@ -242,10 +243,15 @@ float:none !important;
     background: rgb(255, 255, 255);*/
 }
 #accordion{
-  margin-top:50px;
+  
 }
 #mapa_container{
   position: fixed;
+}
+#nav_pc a:hover{
+  text-decoration: none;
+  color:  #3E3E3E;
+
 }
 #pc_container{
   position:absolute;
@@ -273,9 +279,11 @@ float:none !important;
 
 }
 #nav_pc{
-  width:300px;
+  width:220px;
   height: 100%;
   border-color: rgba(41, 145, 197,1) !important;
+   background-color: rgb(178, 183, 183);
+   margin-top:50px;
   
  
   display: inline-block;
@@ -295,7 +303,8 @@ float:none !important;
  position: fixed;
  height: 100%;
  width: 100%;
- margin-top: 50px
+ margin-top: 50px;
+ padding: 10px;
   
 }
 #panel_graficos{
