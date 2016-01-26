@@ -11,6 +11,26 @@ body {
   width: 100%;
   height: 100%;
 }
+a:hover, a:focus {
+    text-decoration: none;
+    color: rgba(73,181,193,1) !important;
+}
+.panel-default>.panel-heading {
+    color: #FFF;
+    background-color: #838D8E;
+    border-color: #ddd;
+    background-image: none;
+}
+.panel-default>.panel-heading:focus {
+     color: rgba(73,181,193,1) !important;
+}
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+.panel-group .panel+.panel {
+    margin-top: 0px;
+}
 
 .btn-bg {
     width: 35px;
