@@ -11,9 +11,10 @@ body {
   width: 100%;
   height: 100%;
 }
-a:hover, a:focus {
-    text-decoration: none;
-    color: rgba(73,181,193,1) !important;
+a:hover, a:focus ~ .panel-heading ~ .panel-default {
+
+    background-color: rgba(73,181,193,1) !important;
+    
 }
 .panel-default>.panel-heading {
     color: #FFF;
@@ -21,8 +22,8 @@ a:hover, a:focus {
     border-color: #ddd;
     background-image: none;
 }
-.panel-default>.panel-heading:focus {
-     color: rgba(73,181,193,1) !important;
+.panel-default>.panel-heading:focus  {
+     background-color: rgba(73,181,193,1) !important;
 }
 .panel-group .panel {
     margin-bottom: 0;
